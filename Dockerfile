@@ -33,8 +33,13 @@ RUN for PYTHON_VERSION in 3.10.13 3.11.8 3.12.2; do \
     && /root/.pyenv/versions/${PYTHON_VERSION}/bin/python -m pip install --upgrade pip setuptools \
   ; done
 
+RUN apt-get remove -y make git wget curl libnss3 libexpat1 \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -f /var/cache/apt/archives/*.deb
+
 ENV PATH /root/.pyenv/versions/3.10.13/bin:${PATH}
 ENV PATH /root/.pyenv/versions/3.11.8/bin:${PATH}
 ENV PATH /root/.pyenv/versions/3.12.2/bin:${PATH}
 
-ENTRYPOINT ["bash"]
+CMD ["bash"]
