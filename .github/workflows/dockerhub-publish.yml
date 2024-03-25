@@ -25,4 +25,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: 2023
+          tags: oziproject/supported-python:2023
