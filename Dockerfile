@@ -30,7 +30,7 @@ RUN git clone https://github.com/pyenv/pyenv /root/.pyenv
 RUN for PYTHON_VERSION in 3.10.13 3.11.8 3.12.2; do \
   set -ex \
     && /root/.pyenv/bin/pyenv install ${PYTHON_VERSION} \
-    && /root/.pyenv/versions/${PYTHON_VERSION}/bin/python -m pip install --upgrade pip \
+    && /root/.pyenv/versions/${PYTHON_VERSION}/bin/python -m pip install --upgrade pip setuptools \
   ; done
 
 ENV PATH /root/.pyenv/versions/3.10.13/bin:${PATH}
