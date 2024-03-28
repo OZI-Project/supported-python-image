@@ -36,7 +36,7 @@ RUN apt-get remove -y make git wget llvm gcc-10 build-essential curl libnss3 lib
   && rm -rf /var/lib/apt/lists/* \
   && rm -f /var/cache/apt/archives/*.deb
 
-FROM debian:bullseye-slim
+FROM scratch
 COPY --from=pyenv-builder / /
 ENV PATH /root/.pyenv/versions/3.10.13/bin:${PATH}
 ENV PATH /root/.pyenv/versions/3.11.8/bin:${PATH}
