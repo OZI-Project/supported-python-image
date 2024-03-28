@@ -37,11 +37,7 @@ RUN apt-get remove -y make git wget llvm gcc build-essential curl libnss3 libexp
   && rm -rf /var/lib/apt/lists/* \
   && rm -f /var/cache/apt/archives/*.deb
 
-<<<<<<< HEAD
 FROM scratch
-=======
-FROM debian:stable-slim
->>>>>>> fc396cbc73d52ae820862e40dac3612d885c7738
 COPY --from=pyenv-builder / /
 ENV PATH /root/.pyenv/versions/3.10.13/bin:${PATH}
 ENV PATH /root/.pyenv/versions/3.11.8/bin:${PATH}
