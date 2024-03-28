@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim AS builder
+FROM debian:stable-slim as builder
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     make \
@@ -6,6 +6,7 @@ RUN apt-get update \
     libssl-dev \
     zlib1g-dev \
     libbz2-dev \
+    liblzma-dev \
     libreadline-dev \
     libsqlite3-dev \
     wget \
@@ -31,12 +32,16 @@ RUN for PYTHON_VERSION in 3.10.13 3.11.8 3.12.2; do \
     && /root/.pyenv/bin/pyenv install ${PYTHON_VERSION} \
     && /root/.pyenv/versions/${PYTHON_VERSION}/bin/python -m pip install --upgrade pip setuptools \
   ; done
-RUN apt-get remove -y make git wget llvm gcc-10 build-essential curl libnss3 libexpat1 \
+RUN apt-get remove -y make git wget llvm gcc build-essential curl libnss3 libexpat1 \
   && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -f /var/cache/apt/archives/*.deb
 
+<<<<<<< HEAD
 FROM scratch
+=======
+FROM debian:stable-slim
+>>>>>>> fc396cbc73d52ae820862e40dac3612d885c7738
 COPY --from=pyenv-builder / /
 ENV PATH /root/.pyenv/versions/3.10.13/bin:${PATH}
 ENV PATH /root/.pyenv/versions/3.11.8/bin:${PATH}
