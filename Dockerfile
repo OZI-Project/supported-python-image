@@ -6,6 +6,7 @@ RUN apt-get update \
     libssl-dev \
     zlib1g-dev \
     libbz2-dev \
+    liblzma-dev \
     libreadline-dev \
     libsqlite3-dev \
     wget \
