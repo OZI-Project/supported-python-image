@@ -38,9 +38,5 @@ RUN apt-get remove -y make wget llvm gcc build-essential curl libnss3 libexpat1 
   && rm -f /var/cache/apt/archives/*.deb
 
 FROM scratch
-COPY --from=pyenv-builder --chown=1 / /
-USER 1
-ENV PATH /root/.pyenv/versions/$(/root/.pyenv/bin/pyenv latest 3.10)/bin:${PATH}
-ENV PATH /root/.pyenv/versions/$(/root/.pyenv/bin/pyenv latest 3.11)/bin:${PATH}
-ENV PATH /root/.pyenv/versions/$(/root/.pyenv/bin/pyenv latest 3.12)/bin:${PATH}
+COPY --from=pyenv-builder / /
 CMD ["bash"]
