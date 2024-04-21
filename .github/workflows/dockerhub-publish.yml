@@ -2,8 +2,6 @@
 name: Publish Docker image
 
 on:
-  release:
-    types: [published]
   schedule:
     - cron: '5 5 * * 1'
 jobs:
